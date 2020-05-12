@@ -20,14 +20,14 @@
 #include <stdlib.h>
 #include <string>
 #include <assert.h>
-#include <exception.h>
+#include "exception.h"
 #include <math.h>
 #include <fstream>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 // includes, timer, string parsing, image helpers
-#include <helper_timer.h>
-#include <helper_string.h>
-#include <helper_image.h>
+#include "helper_timer.h"
+#include "helper_string.h"
+#include "helper_image.h"
 #endif // HELPER_FUNCTIONS_H
