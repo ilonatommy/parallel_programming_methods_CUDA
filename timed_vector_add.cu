@@ -23,6 +23,7 @@ void host_add(int *a, int *b, int *c, int N)
 
 int main(int argc, char *argv[]) {
     long int N = atoi(argv[1]);
+    int threadsPerBlock = atoi(argv[2]);
     
     cudaError_t err = cudaSuccess;
     
@@ -71,7 +72,7 @@ int main(int argc, char *argv[]) {
     sdkStartTimer(&timer);
     
     // launch kernel, check if succeded
-    int threadsPerBlock = 1024;
+    //int threadsPerBlock = 1024;
     int blocksPerGrid = (N + threadsPerBlock - 1) / threadsPerBlock;
     if(blocksPerGrid > 64) blocksPerGrid = 64;
     add <<<blocksPerGrid,threadsPerBlock>>> (dev_a,dev_b,dev_c, N);
@@ -128,7 +129,7 @@ int main(int argc, char *argv[]) {
     cudaFree(dev_c);
     // print results:
     //printf ("Time for the device: %f ms, fot the host: %f ms.\n", d_time, h_time); 
-    printf ("%ld, %f, %f.\n", N, d_time, h_time);
+    printf ("%ld, %d, %d, %f, %f.\n", N, blocksPerGrid, threadsPerBlock, d_time, h_time);
 
     return 0;
 }
